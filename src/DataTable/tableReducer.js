@@ -99,11 +99,11 @@ export function tableReducer(state, action) {
     }
 
     case 'V_SELECT_ALL_ROWS': {
-      let allChecked = !state.allSelected;
+      const allChecked = !state.allSelected;
       const currentPage = state.currentPage;
-      let startIndex = (currentPage - 1) * state.rowsPerPage;
-      let endIndex   = startIndex + state.rowsPerPage;
-        
+      const startIndex = (currentPage - 1) * state.rowsPerPage;
+      const endIndex = startIndex + state.rowsPerPage;
+
       return {
         ...state,
         allSelected: allChecked,

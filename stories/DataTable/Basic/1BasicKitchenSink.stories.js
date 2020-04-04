@@ -199,7 +199,6 @@ const KitchenSink = () => {
         progressPending={loading}
         noHeader={noHeader}
         subHeader={subHeader}
-        sortServer={true}
         subHeaderComponent={
           (
             <div style={{ display: 'flex', alignItems: 'center' }}>

@@ -173,7 +173,7 @@ const DataTable = memo(({
       dispatch({ type: 'SELECT_MULTIPLE_ROWS', selectedRows: preSelectedRows, rows: data });
     }
     if (vSelectableRowSelected) {
-      const preSelectedRows = data.filter( row => vSelectableRowSelected(row));
+      const preSelectedRows = data.filter(row => vSelectableRowSelected(row));
 
       dispatch({ type: 'SELECT_MULTIPLE_ROWS', selectedRows: preSelectedRows, rows: data });
     }

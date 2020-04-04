@@ -169,6 +169,7 @@ TableRow.propTypes = {
   defaultExpanded: PropTypes.bool,
   defaultExpanderDisabled: PropTypes.bool,
   selectableRows: PropTypes.bool.isRequired,
+  vSelectableRows: PropTypes.bool.isRequired,
   expandableRows: PropTypes.bool.isRequired,
   striped: PropTypes.bool.isRequired,
   highlightOnHover: PropTypes.bool.isRequired,
