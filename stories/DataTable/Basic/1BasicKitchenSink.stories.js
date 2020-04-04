@@ -34,6 +34,7 @@ const columns = [
 
 const KitchenSink = () => {
   const [selectableRows, setSelectableRows] = React.useState(false);
+  const [vSelectableRows, setVselectableRows] = React.useState(false);
   const [noSelectAll, setNoSelectAll] = React.useState(false);
   const [selectableRowsHighlight, setSelectableRowsHighlight] = React.useState(false);
   const [expandableRows, setExpandableRows] = React.useState(false);
@@ -57,6 +58,10 @@ const KitchenSink = () => {
       <FormControlLabel
         control={<Checkbox size="small" checked={loading} onChange={() => setLoading(!loading)} />}
         label="Simulate Loading State"
+      />
+      <FormControlLabel
+        control={<Checkbox size="small" checked={vSelectableRows} onChange={() => setVselectableRows(!vSelectableRows)} />}
+        label="Visible Selectable Rows"
       />
       <FormGroup row component="fieldset">
         <FormControlLabel
@@ -179,6 +184,7 @@ const KitchenSink = () => {
         data={data}
         defaultSortField="title"
         selectableRows={selectableRows}
+        vSelectableRows={vSelectableRows}
         selectableRowsNoSelectAll={noSelectAll}
         selectableRowsHighlight={selectableRowsHighlight}
         expandableRows={expandableRows}
@@ -193,6 +199,7 @@ const KitchenSink = () => {
         progressPending={loading}
         noHeader={noHeader}
         subHeader={subHeader}
+        sortServer={true}
         subHeaderComponent={
           (
             <div style={{ display: 'flex', alignItems: 'center' }}>

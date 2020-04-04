@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import TableCell from './TableCell';
 import TableCellCheckbox from './TableCellCheckbox';
+import TableCellCheckboxv from './TableCellCheckboxv';
 import TableCellExpander from './TableCellExpander';
 import ExpanderRow from './ExpanderRow';
 import { getConditionalStyle } from './util';
@@ -44,6 +45,7 @@ const TableRow = memo(({
   onRowClicked,
   onRowDoubleClicked,
   selectableRows,
+  vSelectableRows,
   expandableRows,
   striped,
   highlightOnHover,
@@ -110,6 +112,14 @@ const TableRow = memo(({
       >
         {selectableRows && (
           <TableCellCheckbox
+            name={`select-row-${row[keyField]}`}
+            row={row}
+            selected={selected}
+          />
+        )}
+
+        {vSelectableRows && (
+          <TableCellCheckboxv
             name={`select-row-${row[keyField]}`}
             row={row}
             selected={selected}

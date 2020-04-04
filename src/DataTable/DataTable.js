@@ -8,6 +8,7 @@ import TableHeadRow from './TableHeadRow';
 import TableRow from './TableRow';
 import TableCol from './TableCol';
 import TableColCheckbox from './TableColCheckbox';
+import TableColCheckboxv from './TableColCheckboxv';
 import TableHeader from './TableHeader';
 import TableSubheader from './TableSubheader';
 import TableBody from './TableBody';
@@ -40,6 +41,13 @@ const DataTable = memo(({
   selectableRowDisabled,
   selectableRowsComponent,
   selectableRowsComponentProps,
+  vSelectableRows,
+  vSelectableRowsHighlight,
+  vSelectableRowsNoSelectAll,
+  vSelectableRowSelected,
+  vSelectableRowDisabled,
+  vSelectableRowsComponent,
+  vSelectableRowsComponentProps,
   onRowExpandToggled,
   onSelectedRowsChange,
   expandableIcon,
@@ -138,10 +146,12 @@ const DataTable = memo(({
 
   useDidUpdateEffect(() => {
     onChangePage(currentPage, paginationTotalRows || data.length);
+    dispatch({ type: 'CLEAR_SELECTED_ROWS', selectedRowsFlag: clearSelectedRows });
   }, [currentPage]);
 
   useDidUpdateEffect(() => {
     onChangeRowsPerPage(rowsPerPage, currentPage);
+    dispatch({ type: 'CLEAR_SELECTED_ROWS', selectedRowsFlag: clearSelectedRows });
   }, [rowsPerPage]);
 
   useDidUpdateEffect(() => {
@@ -159,6 +169,11 @@ const DataTable = memo(({
   useEffect(() => {
     if (selectableRowSelected) {
       const preSelectedRows = data.filter(row => selectableRowSelected(row));
+
+      dispatch({ type: 'SELECT_MULTIPLE_ROWS', selectedRows: preSelectedRows, rows: data });
+    }
+    if (vSelectableRowSelected) {
+      const preSelectedRows = data.filter( row => vSelectableRowSelected(row));
 
       dispatch({ type: 'SELECT_MULTIPLE_ROWS', selectedRows: preSelectedRows, rows: data });
     }
@@ -235,6 +250,10 @@ const DataTable = memo(({
     selectableRowDisabled,
     selectableRowsComponent,
     selectableRowsComponentProps,
+    vSelectableRowSelected,
+    vSelectableRowDisabled,
+    vSelectableRowsComponent,
+    vSelectableRowsComponentProps,
     expandableIcon,
     pagination,
     paginationServer,
@@ -306,6 +325,13 @@ const DataTable = memo(({
                         ? <CellBase style={{ flex: '0 0 48px' }} role="columnheader" />
                         : <TableColCheckbox role="columnheader" />
                     )}
+
+                    {vSelectableRows && (
+                      vSelectableRowsNoSelectAll
+                        ? <CellBase style={{ flex: '0 0 48px' }} role="columnheader" />
+                        : <TableColCheckboxv role="columnheader" />
+                    )}
+
                     {expandableRows && !expandableRowsHideExpander && (
                       <TableColExpander />
                     )}
@@ -360,6 +386,7 @@ const DataTable = memo(({
                         row={row}
                         columns={columnsMemo}
                         selectableRows={selectableRows}
+                        vSelectableRows={vSelectableRows}
                         expandableRows={expandableRows}
                         striped={striped}
                         highlightOnHover={highlightOnHover}
@@ -378,6 +405,7 @@ const DataTable = memo(({
                         conditionalRowStyles={conditionalRowStyles}
                         selected={selected}
                         selectableRowsHighlight={selectableRowsHighlight}
+                        vSelectableRowsHighlight={vSelectableRowsHighlight}
                       />
                     );
                   })}
