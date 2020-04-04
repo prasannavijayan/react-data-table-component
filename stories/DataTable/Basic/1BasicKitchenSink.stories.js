@@ -52,6 +52,7 @@ const KitchenSink = () => {
   const [subHeader, setSubHeader] = React.useState(false);
   const [subHeaderAlign, setSubHeaderAlign] = React.useState('right');
   const [fixedHeader, setFixedheader] = React.useState(false);
+  const [sortServer, setSortServer] = React.useState(true);
 
   return (
     <div>
@@ -199,6 +200,7 @@ const KitchenSink = () => {
         progressPending={loading}
         noHeader={noHeader}
         subHeader={subHeader}
+        sortServer={sortServer}
         subHeaderComponent={
           (
             <div style={{ display: 'flex', alignItems: 'center' }}>
