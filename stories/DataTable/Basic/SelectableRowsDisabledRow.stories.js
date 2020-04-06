@@ -77,8 +77,8 @@ const BasicSelectDisabledRow = () => (
     title="Desserts"
     columns={columns}
     data={customData}
-    selectableRows
-    selectableRowDisabled={rowDisabledCriteria}
+    vSelectableRows
+    vSelectableRowDisabled={rowDisabledCriteria}
   />
 );
 

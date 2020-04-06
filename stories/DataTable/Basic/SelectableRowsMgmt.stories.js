@@ -89,7 +89,7 @@ const SelectableRowsManagement = () => {
       title="Desserts"
       columns={columns}
       data={data}
-      selectableRows
+      vSelectableRows
       actions={actions}
       contextActions={contextActions}
       onSelectedRowsChange={handleRowSelected}

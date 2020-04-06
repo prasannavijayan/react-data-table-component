@@ -98,6 +98,20 @@ export function tableReducer(state, action) {
       };
     }
 
+    case 'V_SELECT_ALL_ROWS': {
+      const allChecked = !state.allSelected;
+      const { currentPage } = state;
+      const startIndex = (currentPage - 1) * state.rowsPerPage;
+      const endIndex = startIndex + state.rowsPerPage;
+
+      return {
+        ...state,
+        allSelected: allChecked,
+        selectedCount: allChecked ? action.rows.slice(startIndex, endIndex).length : 0,
+        selectedRows: allChecked ? action.rows.slice(startIndex, endIndex) : [],
+      };
+    }
+
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }

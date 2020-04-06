@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import TableCell from './TableCell';
 import TableCellCheckbox from './TableCellCheckbox';
+import TableCellCheckboxv from './TableCellCheckboxv';
 import TableCellExpander from './TableCellExpander';
 import ExpanderRow from './ExpanderRow';
 import { getConditionalStyle } from './util';
@@ -44,6 +45,7 @@ const TableRow = memo(({
   onRowClicked,
   onRowDoubleClicked,
   selectableRows,
+  vSelectableRows,
   expandableRows,
   striped,
   highlightOnHover,
@@ -120,6 +122,14 @@ const TableRow = memo(({
           />
         )}
 
+        {vSelectableRows && (
+          <TableCellCheckboxv
+            name={`select-row-${row[keyField]}`}
+            row={row}
+            selected={selected}
+          />
+        )}
+
         {expandableRows && !expandableRowsHideExpander && (
           <TableCellExpander
             expanded={expanded}
@@ -163,6 +173,7 @@ TableRow.propTypes = {
   defaultExpanded: PropTypes.bool,
   defaultExpanderDisabled: PropTypes.bool,
   selectableRows: PropTypes.bool.isRequired,
+  vSelectableRows: PropTypes.bool.isRequired,
   expandableRows: PropTypes.bool.isRequired,
   striped: PropTypes.bool.isRequired,
   highlightOnHover: PropTypes.bool.isRequired,
